@@ -1,0 +1,84 @@
+Multilevel feedback queue (MLFQ) scheduling uses a system of queues, each designated a different priority. Each queue is assigned a different quantum time for Round-Robin (RR) scheduling. The important thing to note about MLFQ scheduling is that it is preemptive: a currently running process can be removed from the CPU if another process is deemed to be of higher priority.
+
+In this implementation three queues are present:
+
+				1. Q0 - RR4
+				2. Q1 - RR8
+				3. Q3 - RR12
+Priority order:
+					Q0 > Q1 > Q2
+
+
+This implementation is using Python 2.7.12
+
+Implementation Details:
+
+	Classes:
+		There are two classes present in this implementation
+
+		1.Queue:
+				Queue is a FIFO data-structure, in which inserting and removing are done at different ends.
+				for this implementation i added one more method to this Queue to insert at the other end also.
+
+				Methods:
+					put -> inserts at front
+					get -> removes and returns last element
+					push -> inserts at end
+					empty -> returns true if queue is empty otherwise false
+
+		2.Process:
+				Process class corresponds to a process which can be used to represent a process data.
+				Attributes:
+					process_id   
+					arrival_time  
+					service_time
+					remaining_time
+					turnaround_time
+					response_time
+					waiting_time
+					queue_time
+
+
+Sample Run:-
+			Process Arrival Burst
+
+			P0        0      12
+			P1        8      25
+			P2        21     33
+			P3        30     2
+
+
+			Output:- 
+
+				____________________________________________________________
+					
+					0 ms -> P0 is Created. P0 enters Q0. P0 is selected.
+					4 ms -> P0 is Aged. P0 moves to Q1.
+					4 ms -> P0 is selected in Q1.
+					8 ms -> P1 is Created. P1 enters Q0. P1 is selected.
+					12 ms -> P1 is Aged. P1 moves to Q1.
+					12 ms -> P0 is selected in Q1.
+					16 ms -> P0 is Completed
+					16 ms -> P1 is selected in Q1.
+					21 ms -> P2 is Created. P2 enters Q0. P2 is selected.
+					25 ms -> P2 is Aged. P2 moves to Q1.
+					25 ms -> P1 is selected in Q1.
+					28 ms -> P1 is Aged. P1 moves to Q2.
+					28 ms -> P2 is selected in Q1.
+					30 ms -> P3 is Created. P3 enters Q0. P3 is selected.
+					32 ms -> P3 is Completed
+					32 ms -> P2 is selected in Q1.
+					38 ms -> P2 is Aged. P2 moves to Q2.
+					38 ms -> P1 is selected in Q2.
+					50 ms -> P1 is Aged. P1 moves to Q2.
+					50 ms -> P2 is selected in Q2.
+					62 ms -> P2 is Aged. P2 moves to Q2.
+					62 ms -> P1 is selected in Q2.
+					63 ms -> P1 is completed
+					63 ms -> P2 is selected in Q2.
+					72 ms -> P2 is completed
+				____________________________________________________________
+							Average Waiting Time- 13.0 
+							Average TurnAround Time:- 31.0 
+							Average Response Time:- 0.0
+				____________________________________________________________
