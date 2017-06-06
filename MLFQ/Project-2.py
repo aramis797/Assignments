@@ -1,10 +1,10 @@
 """Project.py: Implementation of Multilevel Feedback Queue Implementation."""
 
-__author__      = "RVN AKHILESH"
+__author__      = "Aramis"
 __copyright__   = "Copyright 2016, Bridgeport University"
 __licence__     = "GPL"
 __version__     = "1.0.1"
-__email__       = "akhilesh.rvn@gmail.com"
+__email__       = "justganesh12321@gmail.com"
 
 
 # Queue is a class which works as a general queue(FIFO) with an extra method
